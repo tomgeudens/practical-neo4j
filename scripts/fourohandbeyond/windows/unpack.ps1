@@ -7,6 +7,8 @@ $neo4jVersion = "4.0.4"
 #Files
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $jdkZip = "zulu11.39.15-ca-jdk11.0.7-win_x64.zip"
+$gdsZip = "neo4j-graph-data-science-1.2.1-standalone.zip"
+$gdsJar = "neo4j-graph-data-science-1.2.1-standalone.jar"
 $apocJar = "apoc-$($apocVersion)-all.jar"
 $apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar"
 
@@ -20,6 +22,9 @@ Write-Host "That's Neo4j done"
 $expandPath = Join-Path $installPath $jdkZip
 Expand-Archive -Force $expandPath ".\"
 Write-Host "JDK as well"
+$expandPath = Join-Path $installPath $gdsZip
+Expand-Archive -Force $expandPath ".\install"
+Write-Host "GDS too"
 
 #Move things to be moved
 $apocLocation = Join-Path $installPath $apocJar
@@ -30,3 +35,7 @@ $apocNLPLocation = Join-Path $installPath $apocNLPJar
 $apocNLPDestination = Join-Path "neo4j-enterprise-$($neo4jVersion)\plugins" $apocNLPJar
 Move-Item -Force -Path $apocNLPLocation -Destination $apocNLPDestination
 Write-Host "APOC NLP dependencies are now in place"
+$gdsLocation = Join-Path $installPath $gdsJar
+$gdsDestination = Join-Path "neo4j-enterprise-$($neo4jVersion)\plugins" $gdsJar
+Move-Item -Force -Path $gdsLocation -Destination $gdsDestination
+Write-Host "GDS is now in place"

@@ -13,7 +13,7 @@ $configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.con
 #Add all the config you want here, newlines are added later.
 $configLines = (
     "metrics.enabled=false",
-    "dbms.security.procedures.unrestricted=apoc.*",
+    "dbms.security.procedures.unrestricted=apoc.*,gds.*",
     "dbms.logs.query.enabled=off",
     "dbms.default_listen_address=0.0.0.0",
     "dbms.memory.heap.initial_size=2048m",

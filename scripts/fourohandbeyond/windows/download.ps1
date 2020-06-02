@@ -5,6 +5,7 @@ New-Item -ItemType Directory -Force -Path install | Out-Null
 
 $neo4jZip = "neo4j-enterprise-4.0.4-windows.zip"
 $jdkZip = "zulu11.39.15-ca-jdk11.0.7-win_x64.zip"
+$gdsZip = "neo4j-graph-data-science-1.2.1-standalone.zip"
 $apocVersion = "4.0.0.12"
 
 $url = "https://neo4j.com/artifact.php?name=$($neo4jZip)"
@@ -29,7 +30,7 @@ $path = Join-Path (Get-Location).Path "install\$($file)"
 Write-Host "APOC NLP Dependencies to: " $path
 (New-Object System.Net.WebClient).DownloadFile($url, $path)
 
-# Not in 4.x
-# $url = "https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/neo4j-graph-algorithms-3.5.13.0-standalone.zip"
-# (New-Object System.Net.WebClient).DownloadFile($url, (get-location).toString() + "install\neo4j-graph-algorithms-3.5.13.0-standalone.zip")
-# Get-ItemProperty "install\neo4j-graph-algorithms-3.5.13.0-standalone.zip"
+$url = "https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/$($gdsZip)"
+$path = Join-Path (Get-Location).Path "install\$($gdsZip)"
+Write-Host "GDS to: " $path
+(New-Object System.Net.WebClient).DownloadFile($url, $path)
