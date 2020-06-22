@@ -1,11 +1,13 @@
 Write-Host "Changing Settings..."
 
 #Versions
-$neo4jVersion = "3.5.17"
+$apocVersion = "3.5.0.12"
+$neo4jVersion = "3.5.19"
+$gdsVersion = "1.1.2"
 
 #Directories
 $neo4jDir = "neo4j-enterprise-$($neo4jVersion)"
-$jdkDir = "zulu8.44.0.11-ca-jdk8.0.242-win_x64"
+$jreDir = "zulu8.46.0.19-ca-jre8.0.252-win_x64"
 
 #Install Path
 $configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.conf"
@@ -13,11 +15,12 @@ $configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.con
 #Add all the config you want here, newlines are added later.
 $configLines = (
     "metrics.enabled=false",
-    "dbms.security.procedures.unrestricted=apoc.*,algo.*",
+    "dbms.security.procedures.unrestricted=apoc.*,gds.*",
     "dbms.connectors.default_listen_address=0.0.0.0",
-    "dbms.memory.heap.initial_size=512m",
-    "dbms.memory.heap.max_size=512m",
+    "dbms.memory.heap.initial_size=1024m",
+    "dbms.memory.heap.max_size=1024m",
     "dbms.memory.pagecache.size=1g",
+    "dbms.udc.enabled=false",
     "dbms.tx_log.rotation.retention_policy=1G size"
 )
 
@@ -29,10 +32,10 @@ foreach($line in $configLines) {
 
 #Install Path
 $neo4jLocation = Join-Path (Get-Location).Path "$($neo4jDir)"
-$javaSdkLocation = Join-Path (Get-Location).Path "$($jdkDir)"
+$javaJRELocation = Join-Path (Get-Location).Path "$($jreDir)"
 
 #Set Java Env Variable for Session
-$env:JAVA_HOME = $javaSdkLocation
+$env:JAVA_HOME = $javaJRELocation
 
 #Import module
 $neo4jModuleLocation = Join-Path $neo4jLocation "bin\Neo4j-Management.psd1"
@@ -40,3 +43,5 @@ Import-Module $neo4jModuleLocation
 
 #Set initial password
 Invoke-Neo4jAdmin -CommandArgs "set-initial-password trinity"
+
+Write-Host "All Done!"

@@ -1,18 +1,20 @@
 Write-Host -ForegroundColor Green -BackgroundColor Black "Starting Neo4j!"
 
 #Versions
-$neo4jVersion = "3.5.17"
+$apocVersion = "3.5.0.12"
+$neo4jVersion = "3.5.19"
+$gdsVersion = "1.1.2"
 
 #Directories
 $neo4jDir = "neo4j-enterprise-$($neo4jVersion)"
-$jdkDir = "zulu8.44.0.11-ca-jdk8.0.242-win_x64"
+$jreDir = "zulu8.46.0.19-ca-jre8.0.252-win_x64"
 
 #Install Path
 $neo4jLocation = Join-Path (Get-Location).Path "$($neo4jDir)"
-$javaSdkLocation = Join-Path (Get-Location).Path "$($jdkDir)"
+$javaJRELocation = Join-Path (Get-Location).Path "$($jreDir)"
 
 #Set Java Env Variable for Session
-$env:JAVA_HOME = $javaSdkLocation
+$env:JAVA_HOME = $javaJRELocation
 
 #Import module
 $neo4jModuleLocation = Join-Path $neo4jLocation "bin\Neo4j-Management.psd1"
