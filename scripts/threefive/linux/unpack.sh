@@ -1,5 +1,7 @@
-tar -xzf install/zulu8.44.0.11-ca-jdk8.0.242-linux_x64.tar.gz
-tar -xzf install/neo4j-enterprise-3.5.17-unix.tar.gz
-unzip install/neo4j-graph-algorithms-3.5.14.0-standalone.zip -d install
-mv install/apoc-3.5.0.9-all.jar neo4j-enterprise-3.5.17/plugins
-mv install/neo4j-graph-algorithms-3.5.14.0-standalone.jar neo4j-enterprise-3.5.17/plugins
+tar -xzf install/zulu8.46.0.19-ca-jre8.0.252-linux_x64.tar.gz
+tar -xzf install/neo4j-enterprise-3.5.19-unix.tar.gz
+unzip -q install/neo4j-graph-data-science-1.1.2-standalone.zip -d install
+
+mv install/apoc-3.5.0.12-all.jar neo4j-enterprise-3.5.19/plugins
+mv install/apoc-mongodb-dependencies-3.5.0.12.jar neo4j-enterprise-3.5.19/plugins
+mv install/neo4j-graph-data-science-1.1.2-standalone.jar neo4j-enterprise-3.5.19/plugins
