@@ -1,8 +1,8 @@
 Write-Host "Unpacking the downloads..."
 
 #Versions
-$apocVersion = "4.0.0.15"
-$neo4jVersion = "4.0.6"
+$apocVersion = "4.1.0.0"
+$neo4jVersion = "4.1.0"
 $gdsVersion = "1.2.2"
 
 #Files
@@ -12,6 +12,7 @@ $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 $gdsJar = "neo4j-graph-data-science-$($gdsVersion)-standalone.jar"
 $apocJar = "apoc-$($apocVersion)-all.jar"
+#$apocCoreJar = "apoc-$($apocVersion)-core.jar" - alternative for all
 $apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar"
 $apocMongoDBJar = "apoc-mongodb-dependencies-$($apocVersion).jar"
 
@@ -34,6 +35,11 @@ $apocLocation = Join-Path $installPath $apocJar
 $apocDestination = Join-Path "neo4j-enterprise-$($neo4jVersion)\plugins" $apocJar
 Move-Item -Force -Path $apocLocation -Destination $apocDestination
 Write-Host "APOC is now in place"
+
+#$apocCoreLocation = Join-Path $installPath $apocCoreJar
+#$apocCoreDestination = Join-Path "neo4j-enterprise-$($neo4jVersion)\plugins" $apocCoreJar
+#Move-Item -Force -Path $apocCoreLocation -Destination $apocCoreDestination
+#Write-Host "APOC Core is now in place"
 
 $apocNLPLocation = Join-Path $installPath $apocNLPJar
 $apocNLPDestination = Join-Path "neo4j-enterprise-$($neo4jVersion)\plugins" $apocNLPJar

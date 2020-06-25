@@ -4,8 +4,8 @@ Write-Host "Creating 'install' folder"
 New-Item -ItemType Directory -Force -Path install | Out-Null
 
 #Versions
-$apocVersion = "4.0.0.15"
-$neo4jVersion = "4.0.6"
+$apocVersion = "4.1.0.0"
+$neo4jVersion = "4.1.0"
 $gdsVersion = "1.2.2"
 
 #Files
@@ -14,6 +14,7 @@ $jreZip = "zulu11.39.15-ca-jre11.0.7-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 $apocJar = "apoc-$($apocVersion)-all.jar"
+#$apocCoreJar = "apoc-$($apocVersion)-core.jar" - alternative for all
 $apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar"
 $apocMongoDBJar = "apoc-mongodb-dependencies-$($apocVersion).jar"
 
@@ -31,6 +32,11 @@ $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download
 $path = Join-Path (Get-Location).Path "install\$($apocJar)"
 Write-Host "APOC to: " $path
 (New-Object System.Net.WebClient).DownloadFile($url, $path)
+
+#$url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocCoreJar)"
+#$path = Join-Path (Get-Location).Path "install\$($apocCoreJar)"
+#Write-Host "APOC Core to: " $path
+#(New-Object System.Net.WebClient).DownloadFile($url, $path)
 
 $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocNLPJar)"
 $path = Join-Path (Get-Location).Path "install\$($apocNLPJar)"
