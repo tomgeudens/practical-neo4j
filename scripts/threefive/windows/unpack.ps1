@@ -3,7 +3,7 @@ Write-Host "Unpacking the downloads..."
 #Versions
 $apocVersion = "3.5.0.12"
 $neo4jVersion = "3.5.19"
-$gdsVersion = "1.1.2"
+$gdsVersion = "1.1.3"
 
 #Files
 $jreZip = "zulu8.46.0.19-ca-jre8.0.252-win_x64.zip"

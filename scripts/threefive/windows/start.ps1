@@ -3,7 +3,7 @@ Write-Host -ForegroundColor Green -BackgroundColor Black "Starting Neo4j!"
 #Versions
 $apocVersion = "3.5.0.12"
 $neo4jVersion = "3.5.19"
-$gdsVersion = "1.1.2"
+$gdsVersion = "1.1.3"
 
 #Directories
 $neo4jDir = "neo4j-enterprise-$($neo4jVersion)"

@@ -6,7 +6,7 @@ New-Item -ItemType Directory -Force -Path install | Out-Null
 #Versions
 $apocVersion = "3.5.0.12"
 $neo4jVersion = "3.5.19"
-$gdsVersion = "1.1.2"
+$gdsVersion = "1.1.3"
 
 $jreZip = "zulu8.46.0.19-ca-jre8.0.252-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
