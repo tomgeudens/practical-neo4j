@@ -3,7 +3,7 @@ Write-Host "Changing Settings..."
 #Versions
 $apocVersion = "4.1.0.0"
 $neo4jVersion = "4.1.0"
-$gdsVersion = "1.2.2"
+$gdsVersion = "1.3.0"
 
 #Directories
 $neo4jDir = "neo4j-enterprise-$($neo4jVersion)"
@@ -12,6 +12,7 @@ $jreDir = "zulu11.39.15-ca-jre11.0.7-win_x64"
 
 #Install Path
 $configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.conf"
+$apocFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\apoc.conf"
 
 #Add all the config you want here, newlines are added later.
 $configLines = (
@@ -24,10 +25,20 @@ $configLines = (
     "dbms.memory.pagecache.size=1g",
     "dbms.tx_log.rotation.retention_policy=1G size"
 )
+$apocLines = (
+    "apoc.export.file.enabled=true",
+    "apoc.import.file.enabled=true"
+)
 
 Write-Host "Adding config to " $configFileLocation
 foreach($line in $configLines) {
     Add-Content -Path $configFileLocation -Value "`r`n$($line)"
+    Write-Host "`t *" $line
+}
+
+Write-Host "Adding config to " $apocFileLocation
+foreach($line in $apocLines) {
+    Add-Content -Path $apocFileLocation -Value "`r`n$($line)"
     Write-Host "`t *" $line
 }
 

@@ -3,7 +3,7 @@ Write-Host "Unpacking the downloads..."
 #Versions
 $apocVersion = "4.1.0.0"
 $neo4jVersion = "4.1.0"
-$gdsVersion = "1.2.2"
+$gdsVersion = "1.3.0"
 
 #Files
 #$jdkZip = "zulu11.39.15-ca-jdk11.0.7-win_x64.zip" - jre does the job really
