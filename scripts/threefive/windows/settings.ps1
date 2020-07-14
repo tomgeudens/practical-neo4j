@@ -2,7 +2,7 @@ Write-Host "Changing Settings..."
 
 #Versions
 $apocVersion = "3.5.0.12"
-$neo4jVersion = "3.5.19"
+$neo4jVersion = "3.5.20"
 $gdsVersion = "1.1.3"
 
 #Directories
