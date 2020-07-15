@@ -5,7 +5,7 @@ New-Item -ItemType Directory -Force -Path install | Out-Null
 
 #Versions
 $apocVersion = "4.1.0.0"
-$neo4jVersion = "4.1.0"
+$neo4jVersion = "4.1.1"
 $gdsVersion = "1.3.0"
 
 #Files
