@@ -7,10 +7,11 @@ New-Item -ItemType Directory -Force -Path install | Out-Null
 $apocVersion = "4.1.0.0"
 $neo4jVersion = "4.1.1"
 $gdsVersion = "1.3.0"
+$zuluVersion = "11.41.23"
+$jreVersion = "11.0.8"
 
 #Files
-#$jdkZip = "zulu11.39.15-ca-jdk11.0.7-win_x64.zip" - jre does the job really
-$jreZip = "zulu11.39.15-ca-jre11.0.7-win_x64.zip"
+$jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 $apocJar = "apoc-$($apocVersion)-all.jar"

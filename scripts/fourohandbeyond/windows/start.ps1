@@ -4,11 +4,12 @@ Write-Host -ForegroundColor Green -BackgroundColor Black "Starting Neo4j!"
 $apocVersion = "4.1.0.0"
 $neo4jVersion = "4.1.1"
 $gdsVersion = "1.3.0"
+$zuluVersion = "11.41.23"
+$jreVersion = "11.0.8"
 
 #Directories
 $neo4jDir = "neo4j-enterprise-$($neo4jVersion)"
-#$jdkDir = "zulu11.39.15-ca-jdk11.0.7-win_x64" - jre does the job really
-$jreDir = "zulu11.39.15-ca-jre11.0.7-win_x64"
+$jreDir = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64"
 
 #Install Path
 $neo4jLocation = Join-Path (Get-Location).Path "$($neo4jDir)"
