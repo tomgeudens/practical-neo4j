@@ -1,4 +1,3 @@
-#Versions
 set apocVersion=4.1.0.0
 set neo4jVersion=4.1.1
 set gdsVersion=1.3.0
