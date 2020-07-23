@@ -1,7 +1,7 @@
 Write-Host "Changing Settings..."
 
 #Versions
-$apocVersion = "4.1.0.0"
+$apocVersion = "4.1.0.1"
 $neo4jVersion = "4.1.1"
 $gdsVersion = "1.3.0"
 $zuluVersion = "11.41.23"
