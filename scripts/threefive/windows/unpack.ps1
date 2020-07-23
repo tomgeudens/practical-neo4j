@@ -1,17 +1,14 @@
 Write-Host "Unpacking the downloads..."
 
 #Versions
-$apocVersion = "3.5.0.12"
-$neo4jVersion = "3.5.20"
-$gdsVersion = "1.1.3"
+. .\scripts\version.ps1
 
 #Files
-$jreZip = "zulu8.46.0.19-ca-jre8.0.252-win_x64.zip"
+$jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 $gdsJar = "neo4j-graph-data-science-$($gdsVersion)-standalone.jar"
 $apocJar = "apoc-$($apocVersion)-all.jar"
-#$apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar" - 3.5 does not have this ???
 $apocMongoDBJar = "apoc-mongodb-dependencies-$($apocVersion).jar"
 
 #Install Path

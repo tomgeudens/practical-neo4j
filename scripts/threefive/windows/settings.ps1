@@ -1,13 +1,11 @@
 Write-Host "Changing Settings..."
 
 #Versions
-$apocVersion = "3.5.0.12"
-$neo4jVersion = "3.5.20"
-$gdsVersion = "1.1.3"
+. .\scripts\version.ps1
 
 #Directories
 $neo4jDir = "neo4j-enterprise-$($neo4jVersion)"
-$jreDir = "zulu8.46.0.19-ca-jre8.0.252-win_x64"
+$jreDir = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64"
 
 #Install Path
 $configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.conf"
