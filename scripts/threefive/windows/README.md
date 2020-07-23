@@ -6,10 +6,16 @@
 
 **Last Update**: 2020/07/23 - APOC update
 
-
 **Important**: All of the below is executed in a commandline window (cmd)  !
 
 ## One - Location Location Location
 
 This document will assume everything (software, installation, database) is going to happen in a single **neo4j** folder (which is created below). This folder must reside in a location that is writable for the user with which you are logged on. No elevated rights will be needed (and try to avoid using an Administrator user). The **C:\users\<your user>\Documents** folder is perfect.
+
+```
+C:\Users\<youruser>\Documents>mkdir neo4j
+C:\Users\<youruser>\Documents>mkdir neo4j\scripts
+C:\Users\<youruser>\Documents>cd neo4j
+C:\Users\<youruser>\Documents\neo4j>
+```
 
