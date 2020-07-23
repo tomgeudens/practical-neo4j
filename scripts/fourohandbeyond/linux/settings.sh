@@ -1,8 +1,4 @@
-export neo4jVersion="4.1.1"
-export apocVersion="4.1.0.1"
-export gdsVersion="1.3.0"
-export zuluVersion="11.41.23"
-export jreVersion="11.0.8"
+. ./scripts/version.sh
 
 # changes to neo4j.conf file
 echo "metrics.enabled=false" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
