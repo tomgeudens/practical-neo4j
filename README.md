@@ -1,3 +1,1 @@
-# practical-neo4j
-
-[scripts](scripts/README.md)
+check the project's wiki for more information
