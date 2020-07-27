@@ -19,7 +19,9 @@ $configLines = (
     "dbms.memory.heap.max_size=1024m",
     "dbms.memory.pagecache.size=1g",
     "dbms.udc.enabled=false",
-    "dbms.tx_log.rotation.retention_policy=1G size"
+    "dbms.tx_log.rotation.retention_policy=1G size",
+    "apoc.export.file.enabled=true",
+    "apoc.import.file.enabled=true"
 )
 
 Write-Host "Adding config to " $configFileLocation
