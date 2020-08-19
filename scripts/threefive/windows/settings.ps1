@@ -1,3 +1,5 @@
+param($password="trinity")
+
 Write-Host "Changing Settings..."
 
 #Versions
@@ -29,19 +31,26 @@ foreach($line in $configLines) {
     Add-Content -Path $configFileLocation -Value "`r`n$($line)"
     Write-Host "`t *" $line
 }
+Write-Host "Done!" -ForegroundColor Green
 
 #Install Path
 $neo4jLocation = Join-Path (Get-Location).Path "$($neo4jDir)"
 $javaJRELocation = Join-Path (Get-Location).Path "$($jreDir)"
 
+Write-Host "Setting JAVA_HOME Environment Variable for this session ... " -NoNewline
 #Set Java Env Variable for Session
 $env:JAVA_HOME = $javaJRELocation
+Write-Host "Done!" -ForegroundColor Green
 
 #Import module
+Write-Host "Importing Neo4j Modules ... " -NoNewline
 $neo4jModuleLocation = Join-Path $neo4jLocation "bin\Neo4j-Management.psd1"
 Import-Module $neo4jModuleLocation
+Write-Host "Done!" -ForegroundColor Green
 
+Write-Host "Setting neo4j initial password ... " -NoNewline
 #Set initial password
-Invoke-Neo4jAdmin -CommandArgs "set-initial-password trinity"
+Invoke-Neo4jAdmin -CommandArgs "set-initial-password $password"
+Write-Host "Done!" -ForegroundColor Green
 
-Write-Host "All Done!"
+Write-Host "`nSettings Complete" -ForegroundColor Green
