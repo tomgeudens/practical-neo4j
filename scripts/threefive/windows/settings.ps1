@@ -50,7 +50,7 @@ Write-Host "Done!" -ForegroundColor Green
 
 Write-Host "Setting neo4j initial password ... " -NoNewline
 #Set initial password
-Invoke-Neo4jAdmin -CommandArgs "set-initial-password $password"
+Invoke-Neo4jAdmin set-initial-password $password
 Write-Host "Done!" -ForegroundColor Green
 
 Write-Host "`nSettings Complete" -ForegroundColor Green
