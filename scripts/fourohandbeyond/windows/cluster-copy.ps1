@@ -1,44 +1,44 @@
-param($instance="",$sizeOfCluster=3)
-if($instance -eq "")
+param($Instance="",$SizeOfCluster=3)
+if($Instance -eq "")
 {
-    Write-Host "No instance was set, this needs to be set!" -ForegroundColor Red
+    Write-Host "No Instance was set, this needs to be set!" -ForegroundColor Red
     exit
 }
 
-if([int]$instance -gt $sizeOfCluster){
-    Write-Host "Instance ID is $instance, but the max size is $sizeOfCluster to run this, you would need to call" -ForegroundColor Red
-    Write-Host "`t.\cluster-copy.ps1 $instance $instance" -ForegroundColor Red
+if([int]$Instance -gt $SizeOfCluster){
+    Write-Host "Instance ID is $Instance, but the max size is $SizeOfCluster to run this, you would need to call" -ForegroundColor Red
+    Write-Host "`t.\cluster-copy.ps1 $Instance $Instance" -ForegroundColor Red
     exit
 }
 
-Write-Host "Creating cluster instance " -NoNewline; Write-Host $instance -ForegroundColor Cyan -NoNewline; Write-Host " of " -NoNewline; Write-Host $sizeOfCluster -ForegroundColor Cyan
+Write-Host "Creating cluster Instance " -NoNewline; Write-Host $Instance -ForegroundColor Cyan -NoNewline; Write-Host " of " -NoNewline; Write-Host $SizeOfCluster -ForegroundColor Cyan
 
 #Versions
 . .\scripts\version.ps1
 
 #Directories
 $baseNeo4jDir = "neo4j-enterprise-$($neo4jVersion)"
-$neo4jDir = "$($baseNeo4jDir)-$($instance)"
+$neo4jDir = "$($baseNeo4jDir)-$($Instance)"
 
 #Install Path
 $configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.conf"
 
-#Copy instance
+#Copy Instance
 New-Item "$neo4jDir" -ItemType "directory" | Out-Null
 Copy-Item "$baseNeo4jDir\*" "$neo4jDir\" -Recurse -Force
 
 #Set ports
 #These config settings should allow up to a cluster size of 19.
-$instanceInt = ([int]$instance * 10)
-$discovery = 5000 + $instanceInt
-$transaction = 6000 + $instanceInt
-$raft = 7000 + $instanceInt
-$bolt = 7400 + $instanceInt
-$http = 7600 + $instanceInt
-$https = 7800 + $instanceInt
-$backup = 6500 + $instanceInt
+$InstanceInt = ([int]$Instance * 10)
+$discovery = 5000 + $InstanceInt
+$transaction = 6000 + $InstanceInt
+$raft = 7000 + $InstanceInt
+$bolt = 7400 + $InstanceInt
+$http = 7600 + $InstanceInt
+$https = 7800 + $InstanceInt
+$backup = 6500 + $InstanceInt
 
-Write-Host "Ports for Cluster Member: " -NoNewline; Write-Host $instance -ForegroundColor Cyan -NoNewline; Write-Host "/$sizeOfCluster";
+Write-Host "Ports for Cluster Member: " -NoNewline; Write-Host $Instance -ForegroundColor Cyan -NoNewline; Write-Host "/$SizeOfCluster";
 Write-Host "-------------------------------------"
 Write-Host "`tHTTP       : " -NoNewline; Write-Host $http -ForegroundColor Green
 Write-Host "`tBolt       : " -NoNewline; Write-Host $bolt -ForegroundColor Green
@@ -49,7 +49,7 @@ Write-Host "`tRaft       : " -NoNewline; Write-Host $raft -ForegroundColor Green
 Write-Host "`tBackup     : " -NoNewline; Write-Host $backup -ForegroundColor Green
 
 $initialMembers = ""
-for ($i = 0; $i -lt $sizeOfCluster; $i++) {
+for ($i = 0; $i -lt $SizeOfCluster; $i++) {
     $modifier = ($i + 1) * 10
     $port = 5000 + $modifier
     $initialMembers = $initialMembers + "127.0.0.1:$port,"
@@ -62,8 +62,8 @@ $configLines = (
     "",
     "#Cluster Config",
     "dbms.mode=CORE",
-    "causal_clustering.minimum_core_cluster_size_at_formation=$sizeOfCluster",
-    "causal_clustering.minimum_core_cluster_size_at_runtime=$sizeOfCluster",
+    "causal_clustering.minimum_core_cluster_size_at_formation=$SizeOfCluster",
+    "causal_clustering.minimum_core_cluster_size_at_runtime=$SizeOfCluster",
     "causal_clustering.initial_discovery_members=$initialMembers",
     "causal_clustering.discovery_listen_address=0.0.0.0:$discovery",
     "causal_clustering.transaction_listen_address=0.0.0.0:$transaction",
@@ -92,5 +92,5 @@ foreach($line in $configLines) {
 }
 Write-Host "Done!" -ForegroundColor Green
 
-Write-Host "`nCreating cluster instance " -NoNewline; Write-Host $instance -ForegroundColor Cyan -NoNewline; Write-Host " of " -NoNewline; Write-Host $sizeOfCluster -ForegroundColor Cyan -NoNewline; Write-Host "..." -NoNewline; Write-Host "Done!" -ForegroundColor Green 
-Write-Host "This instance when run will be accessible at:" -NoNewline; Write-Host "http://127.0.0.1:$http" -ForegroundColor Cyan;
+Write-Host "`nCreating cluster Instance " -NoNewline; Write-Host $Instance -ForegroundColor Cyan -NoNewline; Write-Host " of " -NoNewline; Write-Host $SizeOfCluster -ForegroundColor Cyan -NoNewline; Write-Host "..." -NoNewline; Write-Host "Done!" -ForegroundColor Green 
+Write-Host "This Instance when run will be accessible at:" -NoNewline; Write-Host "http://127.0.0.1:$http" -ForegroundColor Cyan;

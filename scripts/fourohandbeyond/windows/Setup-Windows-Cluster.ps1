@@ -1,6 +1,6 @@
-param($stage="",$password="trinity",$sizeOfCluster=3,$start="false")
-$stage = $stage.ToLower()
-$start = $start.ToLower()
+param($Stage="",$Password="trinity",$SizeOfCluster=3,$Start="false")
+$Stage = $Stage.ToLower()
+$Start = $Start.ToLower()
 
 Write-Host "    _   __           __ __  _ " -ForegroundColor Cyan
 Write-Host "   / | / /__  ____  / // / (_)" -ForegroundColor Yellow
@@ -12,35 +12,47 @@ Write-Host "                              "
 Write-Host "        CLUSTER EDITION       " -ForegroundColor DarkRed -BackgroundColor Yellow -NoNewline; 
 Write-Host "`n";
 
-if($stage -eq "" -or $stage -eq "scripts"){
+if($Stage -eq "" -or $Stage -eq "scripts"){
     mkdir scripts -Force > $null
     Write-Host "Downloading Scripts ... "     
     $rootUri = "https://raw.githubusercontent.com/tomgeudens/practical-neo4j/master/scripts/fourohandbeyond/windows/"
-    
-    Write-Host "`tversion.ps1 ... " -NoNewline
-    Invoke-WebRequest -Uri $rootUri"version.ps1"     -OutFile ./scripts/version.ps1
-    Write-Host "Done!" -ForegroundColor Green
-    
-    Write-Host "`tdownload.ps1 ... " -NoNewline
-    Invoke-WebRequest -Uri $rootUri"download.ps1"    -OutFile ./scripts/download.ps1
-    Write-Host "Done!" -ForegroundColor Green
-    
-    Write-Host "`tunpack.ps1 ... " -NoNewline
-    Invoke-WebRequest -Uri $rootUri"unpack.ps1"      -OutFile ./scripts/unpack.ps1
-    Write-Host "Done!" -ForegroundColor Green
-    
-    Write-Host "`tsettings.ps1 ... " -NoNewline
-    Invoke-WebRequest -Uri $rootUri"settings.ps1"    -OutFile ./scripts/settings.ps1
-    Write-Host "Done!" -ForegroundColor Green
-    
-    Write-Host "`tstart.ps1 ... " -NoNewline
-    Invoke-WebRequest -Uri $rootUri"start.ps1"       -OutFile ./scripts/start.ps1
-    Write-Host "Done!" -ForegroundColor Green
-    
-    Write-Host "`tenvironment.bat ... " -NoNewline
-    Invoke-WebRequest -Uri $rootUri"environment.bat" -OutFile ./scripts/environment.bat
-    Write-Host "Done!" -ForegroundColor Green   
-    
+
+    #Scripts we want in the 'scripts' folder
+    $scriptNames = (
+        "version.ps1",
+        "download.ps1",
+        "unpack.ps1",
+        "settings.ps1",
+        "start.ps1",
+        "environment.bat",
+        "start-cluster-instance.ps1",
+        "cluster-copy.ps1"
+        );
+  
+    foreach($script in $scriptNames) {
+        Write-Host "`t$script ... " -NoNewline
+        try{        
+            Invoke-WebRequest -Uri $rootUri$script -OutFile ./scripts/$script
+            Write-Host "Done!" -ForegroundColor Green
+        }
+        catch{
+            Write-Host "Failed!" -ForegroundColor Red
+        }
+    }
+   
+    #Scripts we want in the same 'root' folder
+    $rootNames = ("Start-Windows-Cluster.ps1")
+    foreach($script in $rootNames) {
+        Write-Host "`t$script ... " -NoNewline
+        try{        
+            Invoke-WebRequest -Uri $rootUri$script -OutFile ./$script
+            Write-Host "Done!" -ForegroundColor Green
+        }
+        catch{
+            Write-Host "Failed!" -ForegroundColor Red
+        }
+    }
+
     Write-Host "`nScripts download complete!" -ForegroundColor Green
 }
 
@@ -48,7 +60,7 @@ Write-Host "Setting Execution Policy ... " -NoNewline
 Set-ExecutionPolicy Bypass -Scope CurrentUser
 Write-Host "Done!" -ForegroundColor Green
 
-if($stage -eq "" -or $stage -eq "download"){
+if($Stage -eq "" -or $Stage -eq "download"){
     ./scripts/download.ps1
     Write-Host "`n`nIf you saw any error messages above press " -NoNewLine; Write-Host "CTRL+C" -ForegroundColor Green -NoNewLine; Write-Host " and try to redownload, then run: '.\Setup-Windows-Cluster.ps1 unpack' to continue."
     Write-Host "To redownload any of the files specifically, run:"
@@ -57,25 +69,25 @@ if($stage -eq "" -or $stage -eq "download"){
     $_ = Read-Host
 }
 
-if($stage -eq "" -or $stage -eq "unpack"){
+if($Stage -eq "" -or $Stage -eq "unpack"){
     ./scripts/unpack.ps1
-    $stage = ""
+    $Stage = ""
 }
 
-if($stage -eq "" -or $stage -eq "settings"){
+if($Stage -eq "" -or $Stage -eq "settings"){
     $process = Get-Process -Id $PID | Select-Object -ExpandProperty ProcessName 
     Write-Host "Launching 'settings' in a new process, the script will continue once that has finished ... " -NoNewline
-    Start-Process $process -ArgumentList "-command ./scripts/settings.ps1 -password $password" -Wait
+    Start-Process $process -ArgumentList "-command ./scripts/settings.ps1 -Password $Password" -Wait
     Write-Host "Done!" -ForegroundColor Green
-    $stage = ""
+    $Stage = ""
 }
 
-if($stage -eq "" -or $stage -eq "cluster"){
-    for ($i = 0; $i -lt $sizeOfCluster; $i++) {
-        .\cluster-copy.ps1 ($i + 1) $sizeOfCluster
+if($Stage -eq "" -or $Stage -eq "cluster"){
+    for ($i = 0; $i -lt $SizeOfCluster; $i++) {
+        ./scripts/cluster-copy.ps1 ($i + 1) $SizeOfCluster
     }
 }
 
-if($start -eq "true"){
-    .\Start-Windows-Cluster.ps1 $sizeOfCluster
+if($Start -eq "true"){
+    .\Start-Windows-Cluster.ps1 $SizeOfCluster
 }

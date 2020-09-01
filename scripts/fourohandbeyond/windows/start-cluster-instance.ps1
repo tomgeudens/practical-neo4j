@@ -1,13 +1,13 @@
-param($instance="",$sizeOfCluster=3)
-if($instance -eq "")
+param($Instance="",$SizeOfCluster=3)
+if($Instance -eq "")
 {
-    Write-Host "No instance was set, this needs to be set!" -ForegroundColor Red
+    Write-Host "No Instance was set, this needs to be set!" -ForegroundColor Red
     exit
 }
 
-if([int]$instance -gt $sizeOfCluster){
-    Write-Host "Instance ID is $instance, but the max size is $sizeOfCluster to run this, you would need to call" -ForegroundColor Red
-    Write-Host "`t.\cluster-copy.ps1 $instance $instance" -ForegroundColor Red
+if([int]$Instance -gt $SizeOfCluster){
+    Write-Host "Instance ID is $Instance, but the max size is $SizeOfCluster to run this, you would need to call" -ForegroundColor Red
+    Write-Host "`t.\cluster-copy.ps1 $Instance $Instance" -ForegroundColor Red
     exit
 }
 
@@ -15,7 +15,7 @@ if([int]$instance -gt $sizeOfCluster){
 #Versions
 . .\scripts\version.ps1
 
-$neo4jDir = "neo4j-enterprise-$($neo4jVersion)-$($instance)"
+$neo4jDir = "neo4j-enterprise-$($neo4jVersion)-$($Instance)"
 $jreDir = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64"
 
 #Install Path
