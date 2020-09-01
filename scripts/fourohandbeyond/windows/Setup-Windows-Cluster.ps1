@@ -26,7 +26,8 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         "start.ps1",
         "environment.bat",
         "start-cluster-instance.ps1",
-        "cluster-copy.ps1"
+        "cluster-copy.ps1",
+        "Start-Windows-Cluster.ps1"
         );
   
     foreach($script in $scriptNames) {
@@ -40,19 +41,6 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         }
     }
    
-    #Scripts we want in the same 'root' folder
-    $rootNames = ("Start-Windows-Cluster.ps1")
-    foreach($script in $rootNames) {
-        Write-Host "`t$script ... " -NoNewline
-        try{        
-            Invoke-WebRequest -Uri $rootUri$script -OutFile ./$script
-            Write-Host "Done!" -ForegroundColor Green
-        }
-        catch{
-            Write-Host "Failed!" -ForegroundColor Red
-        }
-    }
-
     Write-Host "`nScripts download complete!" -ForegroundColor Green
 }
 
@@ -89,5 +77,5 @@ if($Stage -eq "" -or $Stage -eq "cluster"){
 }
 
 if($Start -eq "true"){
-    .\Start-Windows-Cluster.ps1 $SizeOfCluster
+    ./scripts/Start-Windows-Cluster.ps1 $SizeOfCluster
 }

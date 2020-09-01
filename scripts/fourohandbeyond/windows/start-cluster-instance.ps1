@@ -33,7 +33,7 @@ $neo4jModuleLocation = Join-Path $neo4jLocation "bin\Neo4j-Management.psd1"
 Write-Host $neo4jModuleLocation -NoNewline -ForegroundColor Cyan
 Import-Module $neo4jModuleLocation -Prefix 'Cluster'
 Write-Host " ... Done!" -ForegroundColor Green
-
-Write-Host "Starting Neo4j - " -NoNewline; Write-Host "CTRL+C" -ForegroundColor Cyan -NoNewline; Write-Host  " will exit properly.";
+Write-Host "`nThis is instance " -NoNewline; Write-Host $Instance -ForegroundColor Cyan -NoNewline; Write-Host " of " -NoNewline; Write-Host $SizeOfCluster -ForegroundColor Cyan;
+Write-Host "`nStarting Neo4j - " -NoNewline; Write-Host "CTRL+C" -ForegroundColor Cyan -NoNewline; Write-Host  " will exit properly.";
 Write-Host "`n`n"
 Invoke-ClusterNeo4j Console
