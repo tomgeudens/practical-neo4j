@@ -49,8 +49,12 @@ Write-Host "`tRaft       : " -NoNewline; Write-Host $raft -ForegroundColor Green
 Write-Host "`tBackup     : " -NoNewline; Write-Host $backup -ForegroundColor Green
 
 $initialMembers = ""
-for ($i = 0; $i -lt $SizeOfCluster; $i++) {
-    $modifier = ($i + 1) * 10
+$initialMembersCount = $SizeOfCluster
+if($initialMembersCount -gt 3) {
+    $initialMembersCount = 3
+}
+for ($i = 0; $i -lt $initialMembersCount; $i++) {
+    $modifier = ($i + 1)
     $port = 5000 + $modifier
     $initialMembers = $initialMembers + "127.0.0.1:$port,"
 }
@@ -62,8 +66,8 @@ $configLines = (
     "",
     "#Cluster Config",
     "dbms.mode=CORE",
-    "causal_clustering.minimum_core_cluster_size_at_formation=$SizeOfCluster",
-    "causal_clustering.minimum_core_cluster_size_at_runtime=$SizeOfCluster",
+    "causal_clustering.minimum_core_cluster_size_at_formation=$initialMembersCount",
+    "causal_clustering.minimum_core_cluster_size_at_runtime=$initialMembersCount",
     "causal_clustering.initial_discovery_members=$initialMembers",
     "causal_clustering.discovery_listen_address=0.0.0.0:$discovery",
     "causal_clustering.transaction_listen_address=0.0.0.0:$transaction",
