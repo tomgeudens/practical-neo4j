@@ -62,7 +62,7 @@ Write-Host "Done!" -ForegroundColor Green
 
 if($Stage -eq "" -or $Stage -eq "download"){
     ./scripts/download.ps1
-    Write-Host "`n`nIf you saw any error messages above press " -NoNewLine; Write-Host "CTRL+C" -ForegroundColor Green -NoNewLine; Write-Host " and try to redownload, then run: '.\Setup-Windows-Cluster.ps1 unpack' to continue."
+    Write-Host "`n`nIf you saw any error messages above press " -NoNewLine; Write-Host "CTRL+C" -ForegroundColor Green -NoNewLine; Write-Host " and try to redownload, then run: '.\Setup-Windows-Cluster.ps1 -Stage unpack' to continue."
     Write-Host "To redownload any of the files specifically, run:"
     Write-Host "`t.\scripts\download.ps1 <name>" -ForegroundColor Yellow -NoNewline; Write-Host " where " -NoNewline; Write-Host "<name>" -ForegroundColor Yellow -NoNewline; Write-Host " can be one of: " -NoNewline; Write-Host "neo4j,jre,apoc,apocnlp,apocmongodb,gds" -ForegroundColor Yellow
     Write-Host "`nOtherwise - Press " -NoNewLine; Write-Host "ENTER" -NoNewLine -ForegroundColor Green; Write-Host " to continue.";
