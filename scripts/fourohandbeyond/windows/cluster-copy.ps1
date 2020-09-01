@@ -29,7 +29,7 @@ Copy-Item "$baseNeo4jDir\*" "$neo4jDir\" -Recurse -Force
 
 #Set ports
 #These config settings should allow up to a cluster size of 19.
-$InstanceInt = ([int]$Instance * 10)
+$InstanceInt = ([int]$Instance)
 $discovery = 5000 + $InstanceInt
 $transaction = 6000 + $InstanceInt
 $raft = 7000 + $InstanceInt
