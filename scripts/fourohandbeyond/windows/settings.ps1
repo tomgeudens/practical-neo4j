@@ -1,4 +1,4 @@
-param($password="trinity")
+param($Password="trinity")
 
 Write-Host "Changing Settings..."
 
@@ -59,8 +59,8 @@ Import-Module $neo4jModuleLocation
 Write-Host "Done!" -ForegroundColor Green
 
 Write-Host "Setting neo4j initial password ... " -NoNewline
-#Set initial password
-Invoke-Neo4jAdmin set-initial-password $password
+#Set initial Password
+Invoke-Neo4jAdmin set-initial-Password $Password
 Write-Host "Done!" -ForegroundColor Green
 
 Write-Host "`nSettings Complete" -ForegroundColor Green
