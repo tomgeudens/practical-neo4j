@@ -1,16 +1,17 @@
 param($password="trinity")
 
+# Opening statement
 Write-Host "Changing Settings..."
 
-#Versions
+# Version
 . .\scripts\version.ps1
 
-#Directories
-$neo4jDir = "neo4j-enterprise-$($neo4jVersion)"
-$jreDir = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64"
+# Directories
+$neo4jLocation = Join-Path (Get-Location).Path "neo4j-enterprise-$($neo4jVersion)"
+$javaJRELocation = Join-Path (Get-Location).Path "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64"
 
-#Install Path
-$configFileLocation = Join-Path (Get-Location).Path "$($neo4jDir)\conf\neo4j.conf"
+# Configurationfile
+$configFileLocation = Join-Path $neo4jLocation "conf\neo4j.conf"
 
 #Add all the config you want here, newlines are added later.
 $configLines = (
@@ -33,24 +34,19 @@ foreach($line in $configLines) {
 }
 Write-Host "Done!" -ForegroundColor Green
 
-#Install Path
-$neo4jLocation = Join-Path (Get-Location).Path "$($neo4jDir)"
-$javaJRELocation = Join-Path (Get-Location).Path "$($jreDir)"
-
-Write-Host "Setting JAVA_HOME Environment Variable for this session ... " -NoNewline
-#Set Java Env Variable for Session
+Write-Host "Setting Java Environment for this session ... " -NoNewline
 $env:JAVA_HOME = $javaJRELocation
+$env:PATH = "$($javaJRELocation)\bin;" + $env:PATH
 Write-Host "Done!" -ForegroundColor Green
 
-#Import module
 Write-Host "Importing Neo4j Modules ... " -NoNewline
 $neo4jModuleLocation = Join-Path $neo4jLocation "bin\Neo4j-Management.psd1"
 Import-Module $neo4jModuleLocation
 Write-Host "Done!" -ForegroundColor Green
 
 Write-Host "Setting neo4j initial password ... " -NoNewline
-#Set initial password
 Invoke-Neo4jAdmin set-initial-password $password
 Write-Host "Done!" -ForegroundColor Green
 
+# All done
 Write-Host "`nSettings Complete" -ForegroundColor Green

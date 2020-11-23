@@ -1,76 +1,58 @@
 param($product="")
 $product = $product.ToLower()
 
-Write-Host "Downloading - there is no progress indicator! Please be patient!" -ForegroundColor Cyan
-Write-Host "Creating 'install' folder ... " -NoNewline;
-New-Item -ItemType Directory -Force -Path install | Out-Null
-Write-Host "Done!" -ForegroundColor Green
+function DownloadFile([string] $name, [string] $url, [string] $path){
+    Write-Host $name -ForegroundColor Cyan -NoNewLine; Write-Host " to:" $path " ... " -NoNewline;
+    try {
+        (New-Object System.Net.WebClient).DownloadFile($url, $path)
+        Write-Host "Done!" -ForegroundColor Green
+    } catch { Write-Host "Failed!" -ForegroundColor Red}
+}
 
-#Versions
+# Opening statement
+Write-Host "Downloading - there is no progress indicator! Please be patient!" -ForegroundColor Cyan
+
+# Version
 . .\scripts\version.ps1
 
-#Files
+# Files
 $jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 $apocJar = "apoc-$($apocVersion)-all.jar"
-#$apocCoreJar = "apoc-$($apocVersion)-core.jar" - alternative for all
-#$apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar"
 $apocMongoDBJar = "apoc-mongodb-dependencies-$($apocVersion).jar"
 
-if($product -eq "" -or $product -eq "neo4j"){
-    $url = "https://neo4j.com/artifact.php?name=$($neo4jZip)"
-    $path = Join-Path (Get-Location).Path "install\$($neo4jZip)"
-    Write-Host "Neo4j" -ForegroundColor Cyan -NoNewLine; Write-Host " to: " $path " ... " -NoNewline;
-    (New-Object System.Net.WebClient).DownloadFile($url, $path)
-    Write-Host "Done!" -ForegroundColor Green
+# URLs for each product
+$urls = @{}
+$urls.Add('neo4j','https://neo4j.com/artifact.php?name=' + $neo4jZip)
+$urls.Add('jre','https://cdn.azul.com/zulu/bin/' + $jreZip)
+$urls.Add('gds','https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/' + $gdsZip)
+$urls.Add('apoc','https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/' + $apocVersion + '/' + $apocJar)
+$urls.Add('apocmongodb','https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/' + $apocVersion + '/' + $apocMongoDBJar)
+
+# Download location for each product 
+$locations = @{}
+$locations.Add('neo4j', (Get-Location).Path + '\install\' + $neo4jZip)
+$locations.Add('jre', (Get-Location).Path + '\install\' + $jreZip)
+$locations.Add('gds', (Get-Location).Path + '\install\' + $gdsZip)
+$locations.Add('apoc', (Get-Location).Path + '\install\' + $apocJar)
+$locations.Add('apocmongodb', (Get-Location).Path + '\install\' + $apocMongoDBJar)
+
+# Catalog of products
+$catalog = "neo4j","jre","gds","apoc","apocmongodb"
+
+# Create install folder
+Write-Host "Creating 'install' folder ... " -NoNewline;
+New-Item -ItemType Directory -Force -Path install | Out-Null
+Write-Host "Done!" -ForegroundColor Green
+
+# Actual download
+Foreach ($item in $catalog) {
+  # a single product parameter on the commandline overrides the full download
+  if ($product -eq "" -or $product -eq $item){
+    DownloadFile $item $urls[$item] $locations[$item]
+  }
 }
 
-if($product -eq "" -or $product -eq "jre"){
-    $url = "https://cdn.azul.com/zulu/bin/$($jreZip)"
-    $path = Join-Path (Get-Location).Path "install\$($jreZip)"
-    Write-Host "JRE" -ForegroundColor Cyan -NoNewLine; Write-Host " to: " $path " ... " -NoNewline;
-    (New-Object System.Net.WebClient).DownloadFile($url, $path)
-    Write-Host "Done!" -ForegroundColor Green
-}
-
-if($product -eq "" -or $product -eq "apoc"){
-    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocJar)"
-    $path = Join-Path (Get-Location).Path "install\$($apocJar)"
-    Write-Host "APOC" -ForegroundColor Cyan -NoNewLine; Write-Host " to: " $path " ... " -NoNewline;
-    (New-Object System.Net.WebClient).DownloadFile($url, $path)
-    Write-Host "Done!" -ForegroundColor Green
-}
-
-#if($product -eq "" -or $product -eq "apoccore"){
-#    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocCoreJar)"
-#    $path = Join-Path (Get-Location).Path "install\$($apocCoreJar)"
-#    Write-Host "APOC Core to: " $path " ... " -NoNewline;
-#    (New-Object System.Net.WebClient).DownloadFile($url, $path)
-#    Write-Host "Done!" -ForegroundColor Green
-#}
-
-#if($product -eq "" -or $product -eq "apocnlp"){
-#   $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocNLPJar)"
-#   $path = Join-Path (Get-Location).Path "install\$($apocNLPJar)"
-#   Write-Host "APOC NLP Dependencies" -ForegroundColor Cyan -NoNewLine; Write-Host " to: " $path " ... " -NoNewline;
-#   (New-Object System.Net.WebClient).DownloadFile($url, $path)
-#   Write-Host "Done!" -ForegroundColor Green
-#}
-
-if($product -eq "" -or $product -eq "apocmongodb"){
-    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocMongoDBJar)"
-    $path = Join-Path (Get-Location).Path "install\$($apocMongoDBJar)"
-    Write-Host "APOC MongoDB Dependencies" -ForegroundColor Cyan -NoNewLine; Write-Host " to: " $path " ... " -NoNewline;
-    (New-Object System.Net.WebClient).DownloadFile($url, $path)
-    Write-Host "Done!" -ForegroundColor Green
-}
-if($product -eq "" -or $product -eq "gds"){
-    $url = "https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/$($gdsZip)"
-    $path = Join-Path (Get-Location).Path "install\$($gdsZip)"
-    Write-Host "GDS" -ForegroundColor Cyan -NoNewLine; Write-Host " to: " $path " ... " -NoNewline;
-    (New-Object System.Net.WebClient).DownloadFile($url, $path)
-    Write-Host "Done!" -ForegroundColor Green
-}
-
+# All done
 Write-Host "`nDownloading Complete" -ForegroundColor Green
