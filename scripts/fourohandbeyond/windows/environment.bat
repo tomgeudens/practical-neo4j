@@ -1,5 +1,5 @@
-set apocVersion=4.1.0.4
-set neo4jVersion=4.1.4
+set apocVersion=4.2.0.0
+set neo4jVersion=4.2.1
 set gdsVersion=1.4.0
 set zuluVersion=11.43.55
 set jreVersion=11.0.9.1
