@@ -1,8 +1,7 @@
-param($Product="")
-$Product = $Product.ToLower()
+param($product="")
+$product = $product.ToLower()
 
-function DownloadFile([string] $name, [string] $url, [string] $filename){
-    $path = Join-Path (Get-Location).Path "install\$filename"
+function DownloadFile([string] $name, [string] $url, [string] $path){
     Write-Host $name -ForegroundColor Cyan -NoNewLine; Write-Host " to:" $path " ... " -NoNewline;
     try {
         (New-Object System.Net.WebClient).DownloadFile($url, $path)
@@ -10,55 +9,53 @@ function DownloadFile([string] $name, [string] $url, [string] $filename){
     } catch { Write-Host "Failed!" -ForegroundColor Red}
 }
 
+# Opening statement
 Write-Host "Downloading - there is no progress indicator! Please be patient!" -ForegroundColor Cyan
-Write-Host "Creating 'install' folder ... " -NoNewline;
-New-Item -ItemType Directory -Force -Path install | Out-Null
-Write-Host "Done!" -ForegroundColor Green
 
-#Versions
+# Version
 . .\scripts\version.ps1
 
-#Files
+# Files
 $jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
 $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 $apocJar = "apoc-$($apocVersion)-all.jar"
-#$apocCoreJar = "apoc-$($apocVersion)-core.jar" - alternative for all
-$apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar"
 $apocMongoDBJar = "apoc-mongodb-dependencies-$($apocVersion).jar"
+$apocNLPJar = "apoc-nlp-dependencies-$($apocVersion).jar"
 
-if($Product -eq "" -or $Product -eq "neo4j"){
-    $url = "https://neo4j.com/artifact.php?name=$neo4jZip"
-    DownloadFile "Neo4j" $url $neo4jZip
+# URLs for each product
+$urls = @{}
+$urls.Add('neo4j','https://neo4j.com/artifact.php?name=' + $neo4jZip)
+$urls.Add('jre','https://cdn.azul.com/zulu/bin/' + $jreZip)
+$urls.Add('gds','https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/' + $gdsZip)
+$urls.Add('apoc','https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/' + $apocVersion + '/' + $apocJar)
+$urls.Add('apocmongodb','https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/' + $apocVersion + '/' + $apocMongoDBJar)
+$urls.Add('apocnlp','https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/' + $apocVersion + '/' + $apocNLPJar)
+
+# Download location for each product 
+$locations = @{}
+$locations.Add('neo4j', (Get-Location).Path + '\install\' + $neo4jZip)
+$locations.Add('jre', (Get-Location).Path + '\install\' + $jreZip)
+$locations.Add('gds', (Get-Location).Path + '\install\' + $gdsZip)
+$locations.Add('apoc', (Get-Location).Path + '\install\' + $apocJar)
+$locations.Add('apocmongodb', (Get-Location).Path + '\install\' + $apocMongoDBJar)
+$locations.Add('apocnlp', (Get-Location).Path + '\install\' + $apocNLPJar)
+
+# Catalog of products
+$catalog = "neo4j","jre","gds","apoc","apocmongodb","apocnlp"
+
+# Create install folder
+Write-Host "Creating 'install' folder ... " -NoNewline;
+New-Item -ItemType Directory -Force -Path install | Out-Null
+Write-Host "Done!" -ForegroundColor Green
+
+# Actual download
+Foreach ($item in $catalog) {
+  # a single product parameter on the commandline overrides the full download
+  if ($product -eq "" -or $product -eq $item){
+    DownloadFile $item $urls[$item] $locations[$item]
+  }
 }
 
-if($Product -eq "" -or $Product -eq "jre"){
-    $url = "https://cdn.azul.com/zulu/bin/$jreZip"
-    DownloadFile "JRE" $url $jreZip
-}
-
-if($Product -eq "" -or $Product -eq "apoc"){
-    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$apocVersion/$apocJar"
-    DownloadFile "APOC" $url $apocJar
-}
-
-#if($Product -eq "" -or $Product -eq "apoccore"){
-#    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$apocVersion/$apocCoreJar"
-#    DownloadFile "APOC Core" $url $apocCoreJar
-#}
-
-if($Product -eq "" -or $Product -eq "apocnlp"){
-    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$apocVersion/$apocNLPJar"
-    DownloadFile "APOC NLP Dependencies" $url $apocNLPJar
-}
-if($Product -eq "" -or $Product -eq "apocmongodb"){
-    $url = "https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$apocVersion/$apocMongoDBJar"
-    DownloadFile "APOC MongoDB Dependencies" $url $apocMongoDBJar
-}
-if($Product -eq "" -or $Product -eq "gds"){
-    $url = "https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/$gdsZip"
-    DownloadFile "GDS" $url $gdsZip
-}
-
+# All done
 Write-Host "`nDownloading Complete" -ForegroundColor Green
-
