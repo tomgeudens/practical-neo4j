@@ -24,7 +24,8 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         "unpack.ps1",
         "settings.ps1",
         "start.ps1",
-        "environment.bat",
+        "move.ps1",
+        "environment.ps1",
         "start-cluster-instance.ps1",
         "cluster-copy.ps1",
         "Start-Windows-Cluster.ps1"
@@ -59,6 +60,11 @@ if($Stage -eq "" -or $Stage -eq "download"){
 
 if($Stage -eq "" -or $Stage -eq "unpack"){
     ./scripts/unpack.ps1
+    $Stage = ""
+}
+
+if($Stage -eq "" -or $Stage -eq "move"){
+    ./scripts/move.ps1
     $Stage = ""
 }
 
