@@ -23,7 +23,8 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         "unpack.ps1",
         "settings.ps1",
         "start.ps1",
-        "environment.bat"
+        "environment.ps1",
+        "move.ps1"
         );
   
     foreach($script in $scriptNames) {
@@ -55,6 +56,11 @@ if($Stage -eq "" -or $Stage -eq "download"){
 
 if($Stage -eq "" -or $Stage -eq "unpack"){
     ./scripts/unpack.ps1
+    $Stage = ""
+}
+
+if($Stage -eq "" -or $Stage -eq "move"){
+    ./scripts/move.ps1
     $Stage = ""
 }
 
