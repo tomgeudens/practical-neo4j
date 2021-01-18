@@ -27,7 +27,8 @@ $configLines = (
     "dbms.memory.heap.initial_size=2g",
     "dbms.memory.heap.max_size=2g",
     "dbms.memory.pagecache.size=1g",
-    "dbms.tx_log.rotation.retention_policy=1G size"
+    "dbms.tx_log.rotation.retention_policy=1G size",
+    "browser.remote_content_hostname_whitelist=*"
 )
 $apocLines = (
     "apoc.export.file.enabled=true",

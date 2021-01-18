@@ -13,6 +13,7 @@ echo "dbms.memory.heap.initial_size=2g" >> neo4j-enterprise-${neo4jVersion}/conf
 echo "dbms.memory.heap.max_size=2g" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
 echo "dbms.memory.pagecache.size=1g" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
 echo "dbms.tx_log.rotation.retention_policy=1G size" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
+echo "browser.remote_content_hostname_whitelist=*" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
 
 # create apoc.conf file
 echo "apoc.export.file.enabled=true" > neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
