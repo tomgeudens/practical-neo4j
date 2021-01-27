@@ -22,9 +22,9 @@ $gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
 
 # Archive for each product
 $archives = @{}
-$archives.Add('neo4j', (Get-Location).Path + '\install\' + $neo4jZip)
-$archives.Add('jre', (Get-Location).Path + '\install\' + $jreZip)
-$archives.Add('gds', (Get-Location).Path + '\install\' + $gdsZip)
+$archives.Add('neo4j', (Get-Location).Path + "\install\$($neo4jZip)")
+$archives.Add('jre', (Get-Location).Path + "\install\$($jreZip)")
+$archives.Add('gds', (Get-Location).Path + "\install\$($gdsZip)")
 
 # Target location for each product 
 $locations = @{}
