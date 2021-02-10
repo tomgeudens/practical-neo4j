@@ -1,5 +1,5 @@
 # Imports
-if($neo4jVersion -eq ""){
+if($null -eq $neo4jVersion){
     . .\scripts\version.ps1
 }
 
