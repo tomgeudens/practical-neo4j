@@ -16,7 +16,7 @@ Write-Host "Moving the plugins..."
 . .\scripts\version.ps1
 
 # Files
-$gdsJar = "neo4j-graph-data-science-$($gdsVersion)-standalone.jar"
+$gdsJar = "neo4j-graph-data-science-$($gdsVersion).jar"
 $apocJar = "apoc-$($apocVersion)-all.jar"
 $apocLicense = "license-dependency.json"
 
