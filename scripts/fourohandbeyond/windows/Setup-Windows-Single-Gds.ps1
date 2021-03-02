@@ -8,7 +8,8 @@ Write-Host " / /|  /  __/ /_/ /__  __/ /  " -ForegroundColor Magenta
 Write-Host "/_/ |_/\___/\____/  /_/_/ /   " -ForegroundColor Yellow
 Write-Host "                     /___/    " -ForegroundColor Cyan
 Write-Host "                              "
-Write-Host "        SINGLE EDITION        " -ForegroundColor DarkRed -BackgroundColor Yellow -NoNewline; 
+Write-Host "       SINGLE INSTANCE        " -ForegroundColor DarkRed -BackgroundColor Yellow; 
+Write-Host "         GDS EDITION          " -ForegroundColor DarkRed -BackgroundColor Yellow -NoNewline; 
 Write-Host "`n";
 
 if($Stage -eq "" -or $Stage -eq "scripts"){
@@ -20,6 +21,7 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
     $scriptNames = (
         "version.ps1",
         "download.ps1",
+        "downloadDumps.ps1",
         "unpack.ps1",
         "settings.ps1",
         "start.ps1",
@@ -42,13 +44,15 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
     Write-Host "`nScripts download complete!" -ForegroundColor Green
 }
 
+
+
 Write-Host "Setting Execution Policy ... " -NoNewline
 Set-ExecutionPolicy Bypass -Scope CurrentUser
 Write-Host "Done!" -ForegroundColor Green
 
 if($Stage -eq "" -or $Stage -eq "download"){
     ./scripts/download.ps1
-    Write-Host "`n`nIf you saw any error messages above press " -NoNewLine; Write-Host "CTRL+C" -ForegroundColor Green -NoNewLine; Write-Host " and try to redownload, then run: '.\Setup-Windows-Single.ps1 -Stage unpack' to continue."
+    Write-Host "`n`nIf you saw any error messages above press " -NoNewLine; Write-Host "CTRL+C" -ForegroundColor Green -NoNewLine; Write-Host " and try to redownload, then run: '.\Setup-Windows-Single-Gds.ps1 -Stage unpack' to continue."
     Write-Host "To redownload any of the files specifically, run:"
     Write-Host "`t.\scripts\download.ps1 <name>" -ForegroundColor Yellow -NoNewline; Write-Host " where " -NoNewline; Write-Host "<name>" -ForegroundColor Yellow -NoNewline; Write-Host " can be one of: " -NoNewline; Write-Host "neo4j,jre,apoc,apocnlp,apocmongodb,gds" -ForegroundColor Yellow
     Write-Host "`nOtherwise - Press " -NoNewLine; Write-Host "ENTER" -NoNewLine -ForegroundColor Green; Write-Host " to continue.";
@@ -70,6 +74,19 @@ if($Stage -eq "" -or $Stage -eq "settings"){
     $Stage = ""
 }
 
-if($Start -eq "true"){
-    ./scripts/start.ps1
+Write-Host "Starting Neo4j in a new Window... (Required to load the dumps)"
+$process = Get-Process -Id $PID | Select-Object -ExpandProperty ProcessName 
+Start-Process $process -ArgumentList "-command .\scripts\start.ps1"
+Write-Host "`nPlease wait for Neo4j to say 'Started' then press " -NoNewLine; Write-Host "ENTER" -NoNewLine -ForegroundColor Green; Write-Host " to continue.";
+$_ = Read-Host
+
+if($Stage -eq "" -or $Stage -eq "dumps"){
+    ./scripts/downloadDumps.ps1 -password $Password
+    Write-Host "`n`nIf you saw any error messages above press " -NoNewLine; Write-Host "CTRL+C" -ForegroundColor Green -NoNewLine; Write-Host " and try to redownload."
+    Write-Host "To redownload any of the files specifically, run:"
+    Write-Host "`t.\scripts\downloadDumps.ps1 <name>" -ForegroundColor Yellow -NoNewline; Write-Host " where " -NoNewline; Write-Host "<name>" -ForegroundColor Yellow -NoNewline; Write-Host " can be one of: " -NoNewline; Write-Host "got,paysim" -ForegroundColor Yellow
+    Write-Host "`nOtherwise - Press " -NoNewLine; Write-Host "ENTER" -NoNewLine -ForegroundColor Green; Write-Host " to continue.";
+    $_ = Read-Host
 }
+
+Write-Host "GDS Setup is complete. You can stop your Neo4j instance now if you want. Or get GDSing!!"

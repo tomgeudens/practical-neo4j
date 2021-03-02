@@ -1,19 +1,12 @@
 param($product="")
 $product = $product.ToLower()
 
-function DownloadFile([string] $name, [string] $url, [string] $path){
-    Write-Host $name -ForegroundColor Cyan -NoNewLine; Write-Host " to:" $path " ... " -NoNewline;
-    try {
-        (New-Object System.Net.WebClient).DownloadFile($url, $path)
-        Write-Host "Done!" -ForegroundColor Green
-    } catch { Write-Host "Failed!" -ForegroundColor Red}
-}
+# Imports
+. .\scripts\version.ps1
+. .\scripts\functions.ps1
 
 # Opening statement
 Write-Host "Downloading - there is no progress indicator! Please be patient!" -ForegroundColor Cyan
-
-# Version
-. .\scripts\version.ps1
 
 # Files
 $jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
