@@ -28,7 +28,8 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         "environment.ps1",
         "start-cluster-instance.ps1",
         "cluster-copy.ps1",
-        "Start-Windows-Cluster.ps1"
+        "Start-Windows-Cluster.ps1",
+        "functions.ps1"
         );
   
     foreach($script in $scriptNames) {
