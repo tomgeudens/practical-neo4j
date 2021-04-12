@@ -1,4 +1,4 @@
-export neo4jVersion="4.2.4"
+export neo4jVersion="4.2.5"
 export apocVersion="4.2.0.2"
 export gdsVersion="1.5.1"
 export zuluVersion="11.45.27"
