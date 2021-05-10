@@ -32,7 +32,8 @@ $configLines = (
 )
 $apocLines = (
     "apoc.export.file.enabled=true",
-    "apoc.import.file.enabled=true"
+    "apoc.import.file.enabled=true",
+    "apoc.import.file.use_neo4j_config=true"
 )
 
 Write-Host "Adding config to " $configFileLocation

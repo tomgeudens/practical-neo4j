@@ -18,6 +18,7 @@ echo "browser.remote_content_hostname_whitelist=*" >> neo4j-enterprise-${neo4jVe
 # create apoc.conf file
 echo "apoc.export.file.enabled=true" > neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
 echo "apoc.import.file.enabled=true" >> neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
+echo "apoc.import.file.use_neo4j_config=true" >> neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
 
 # setting the initial password
 export JAVA_HOME=$(pwd)/zulu${zuluVersion}-ca-jre${jreVersion}-macosx_x64
