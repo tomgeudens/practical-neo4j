@@ -42,7 +42,7 @@ Foreach ($dependency in $dependencies) {
 $locations.Add('apoclicense', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
 
 # Catalog of products
-$catalog = "gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls","apoclicense"
+$catalog = "gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls"
 
 # Actual move
 Foreach ($item in $catalog) {

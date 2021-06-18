@@ -41,7 +41,7 @@ Foreach ($dependency in $dependencies) {
 $locations.Add('apoclicense', (Get-Location).Path + "\install\$($apocLicense)")
 
 # Catalog of products
-$catalog = "neo4j","jre","gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls","apoclicense"
+$catalog = "neo4j","jre","gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls"
 
 # Create install folder
 Write-Host "Creating 'install' folder ... " -NoNewline;

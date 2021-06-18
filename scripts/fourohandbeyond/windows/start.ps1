@@ -22,7 +22,7 @@ Import-Module $neo4jModuleLocation
 Write-Host "Done!" -ForegroundColor Green
 
 # Start
-Invoke-Neo4j Console
+Invoke-Neo4j console
 
 # All done
 # Nothing needed here
