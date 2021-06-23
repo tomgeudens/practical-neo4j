@@ -10,5 +10,5 @@ curl -L -o "install/apoc-email-dependencies-${apocVersion}.jar" https://github.c
 curl -L -o "install/apoc-mongodb-dependencies-${apocVersion}.jar" https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${apocVersion}/apoc-mongodb-dependencies-${apocVersion}.jar
 curl -L -o "install/apoc-nlp-dependencies-${apocVersion}.jar" https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${apocVersion}/apoc-nlp-dependencies-${apocVersion}.jar
 curl -L -o "install/apoc-xls-dependencies-${apocVersion}.jar" https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${apocVersion}/apoc-xls-dependencies-${apocVersion}.jar
-curl -L -o "install/license-dependency.json" https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${apocVersion}/license-dependency.json
+#curl -L -o "install/license-dependency.json" https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${apocVersion}/license-dependency.json
 curl -L -o "install/neo4j-graph-data-science-${gdsVersion}-standalone.zip"  https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/neo4j-graph-data-science-${gdsVersion}-standalone.zip
