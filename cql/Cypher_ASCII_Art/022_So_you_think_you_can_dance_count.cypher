@@ -1,0 +1,3 @@
+// 022 - So you think you can dance/count ...
+MATCH (p:Person {name: "Tom Hanks"})-[f:ACTED_IN|DIRECTED]->(m:Movie)
+RETURN p.name, count(f);
