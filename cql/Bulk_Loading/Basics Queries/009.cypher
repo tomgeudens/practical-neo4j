@@ -1,3 +1,0 @@
-// 009 Add schema
-CREATE CONSTRAINT ON (t:Trainer) ASSERT t.name IS UNIQUE;
-CREATE CONSTRAINT ON (t:Training) ASSERT t.title IS UNIQUE;
