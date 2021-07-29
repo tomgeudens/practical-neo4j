@@ -11,7 +11,6 @@
     <properties>
         <!-- versions verified as being stable on 2021/07/24 -->
         <gds.version>1.6.2</gds.version>
-        <neo4j.version>4.3.2</neo4j.version>
         <jetbrains-annotations.version>21.0.1</jetbrains-annotations.version> <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
         <immutables.version>2.8.8</immutables.version> <!-- https://mvnrepository.com/artifact/org.immutables/value -->
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
@@ -27,18 +26,6 @@
 
     <dependencies>
         <!-- Code Dependencies -->
-        <dependency>
-            <!-- This gives us the Procedure API our runtime code uses.
-                 We have a `provided` scope on it, because when this is
-                 deployed in a Neo4j Instance, the API will be provided
-                 by Neo4j. If you add non-Neo4j dependencies to this
-                 project, their scope should normally be `compile`           -->
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j</artifactId>
-            <version>${neo4j.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.neo4j.gds</groupId>
             <artifactId>core</artifactId>
@@ -64,13 +51,6 @@
         <dependency>
             <groupId>org.immutables</groupId>
             <artifactId>value-annotations</artifactId>
-            <version>${immutables.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.immutables</groupId>
-            <artifactId>builder</artifactId>
             <version>${immutables.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -112,9 +92,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -183,6 +163,9 @@
                      After a restart, the function/procedure is available.            -->
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>${maven-shade-plugin.version}</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
