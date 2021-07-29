@@ -56,10 +56,10 @@ public class MaximumPropertyValuePregelComputationTest {
 
         HugeLongArray nodeValues = pregelJob.run().nodeValues().longProperties(MAXIMUMVALUE_KEY);
         HashMap<String, Long> expected = new HashMap<>(4);
-        expected.put("a", 3L);
-        expected.put("b", 6L);
-        expected.put("c", 2L);
-        expected.put("d", 1L);
+        expected.put("pe1", 3L);
+        expected.put("pe2", 6L);
+        expected.put("pe3", 2L);
+        expected.put("pe4", 1L);
 
         assertLongValues(graph, nodeValues::get, expected);
     }
