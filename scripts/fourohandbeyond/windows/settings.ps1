@@ -27,6 +27,7 @@ $configLines = (
     "dbms.memory.heap.initial_size=2g",
     "dbms.memory.heap.max_size=2g",
     "dbms.memory.pagecache.size=1g",
+    "dbms.memory.transaction.global_max_size=2000m",
     "dbms.tx_log.rotation.retention_policy=1G size",
     "browser.remote_content_hostname_whitelist=*"
 )
