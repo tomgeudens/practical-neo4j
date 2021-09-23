@@ -21,7 +21,7 @@ $apocJar = "apoc-$($apocVersion)-all.jar"
 $apocLicense = "license-dependency.json"
 
 # APOC Dependency list
-$dependencies = "couchbase","email","mongodb","nlp","xls"
+$dependencies = "couchbase","email","mongodb","nlp","redis","xls"
 
 # Plugins
 $plugins = @{}
@@ -42,7 +42,7 @@ Foreach ($dependency in $dependencies) {
 $locations.Add('apoclicense', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
 
 # Catalog of products
-$catalog = "gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls"
+$catalog = "gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocredis","apocxls"
 
 # Actual move
 Foreach ($item in $catalog) {
