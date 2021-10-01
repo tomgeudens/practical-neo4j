@@ -16,7 +16,7 @@ $apocJar = "apoc-$($apocVersion)-all.jar"
 $apocLicense = "license-dependency.json"
 
 # APOC Dependency list
-$dependencies = "couchbase","email","mongodb","nlp","redis","xls"
+$dependencies = "couchbase","email","mongodb","nlp","xls"
 
 # URLs for each product
 $urls = @{}
@@ -41,7 +41,7 @@ Foreach ($dependency in $dependencies) {
 $locations.Add('apoclicense', (Get-Location).Path + "\install\$($apocLicense)")
 
 # Catalog of products
-$catalog = "neo4j","jre","gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocredis","apocxls"
+$catalog = "neo4j","jre","gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls"
 
 # Create install folder
 Write-Host "Creating 'install' folder ... " -NoNewline;
