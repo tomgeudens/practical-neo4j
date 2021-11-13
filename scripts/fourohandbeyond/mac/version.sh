@@ -1,5 +1,5 @@
 export apocVersion="4.3.0.3"
 export neo4jVersion="4.3.6"
-export gdsVersion="1.7.1"
+export gdsVersion="1.7.2"
 export zuluVersion="11.52.13"
 export jreVersion="11.0.13"
