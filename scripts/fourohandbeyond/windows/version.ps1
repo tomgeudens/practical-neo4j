@@ -1,8 +1,8 @@
 Write-Host "Setting the versions ..." -NoNewline;
 
 $apocVersion = "4.3.0.4"
-$neo4jVersion = "4.3.7"
-$gdsVersion = "1.7.2"
+$neo4jVersion = "4.3.8"
+$gdsVersion = "1.8.0"
 $zuluVersion = "11.52.13"
 $jreVersion = "11.0.13"
 
