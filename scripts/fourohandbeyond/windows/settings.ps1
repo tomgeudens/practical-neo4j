@@ -30,6 +30,7 @@ $configLines = (
     "dbms.memory.transaction.global_max_size=2000m",
     "dbms.tx_log.rotation.retention_policy=1G size",
     "dbms.db.timezone=SYSTEM",
+    "#dbms.logs.user.stdout_enabled=false",
     "browser.remote_content_hostname_whitelist=*"
 )
 $apocLines = (
