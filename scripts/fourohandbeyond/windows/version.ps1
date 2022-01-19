@@ -6,4 +6,4 @@ $gdsVersion = "1.8.2"
 $zuluVersion = "11.54.23"
 $jreVersion = "11.0.14"
 
-Write-Host " Done!" -ForegroundColor Green
+Write-Host " Done!" -ForegroundColor Blue
