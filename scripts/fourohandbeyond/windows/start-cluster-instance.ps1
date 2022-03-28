@@ -36,4 +36,4 @@ Write-Host " ... Done!" -ForegroundColor Green
 Write-Host "`nThis is instance " -NoNewline; Write-Host $Instance -ForegroundColor Cyan -NoNewline; Write-Host " of " -NoNewline; Write-Host $SizeOfCluster -ForegroundColor Cyan;
 Write-Host "`nStarting Neo4j - " -NoNewline; Write-Host "CTRL+C" -ForegroundColor Cyan -NoNewline; Write-Host  " will exit properly.";
 Write-Host "`n`n"
-Invoke-ClusterNeo4j Console
+Invoke-ClusterNeo4j console
