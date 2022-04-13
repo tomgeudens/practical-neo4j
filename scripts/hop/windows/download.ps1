@@ -8,7 +8,6 @@ $product = $product.ToLower()
 # Opening statement
 Write-Host "Downloading - there is no progress indicator! Please be patient!" -ForegroundColor Cyan
 
-https://dlcdn.apache.org/hop/1.2.0/apache-hop-client-1.2.0.zip
 # Files
 $jreZip = "OpenJDK$($temurinMajorVersion)U-$($temurinType)_x64_windows_hotspot_$($temurinZipVersion).zip"
 $hopZip = "apache-hop-client-$($hopVersion).zip"
