@@ -22,7 +22,7 @@ $hopZip = "apache-hop-client-$($hopVersion).zip"
 
 # Archive for each product
 $archives = @{}
-$archives.Add('hop', (Get-Location).Path + "\install\$($neo4jZip)")
+$archives.Add('hop', (Get-Location).Path + "\install\$($hopZip)")
 $archives.Add('jre', (Get-Location).Path + "\install\$($jreZip)")
 
 # Target location for each product 
