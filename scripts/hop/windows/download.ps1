@@ -13,9 +13,6 @@ https://dlcdn.apache.org/hop/1.2.0/apache-hop-client-1.2.0.zip
 $jreZip = "OpenJDK$($temurinMajorVersion)U-$($temurinType)_x64_windows_hotspot_$($temurinZipVersion).zip"
 $hopZip = "apache-hop-client-$($hopVersion).zip"
 
-https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14.1%2B1/OpenJDK11U-jre_x64_windows_hotspot_11.0.14.1_1.zip
-https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jre_x64_windows_hotspot_8u322b06.zip
-
 # URLs for each product
 $urls = @{}
 $urls.Add('hop',"https://dlcdn.apache.org/hop/$($hopVersion)/$($hopZip)")
