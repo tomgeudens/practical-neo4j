@@ -18,7 +18,7 @@ Write-Host "Unpacking the downloads..."
 # Files
 $jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
-$gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
+$gdsZip = "neo4j-graph-data-science-$($gdsVersion).zip"
 
 # Archive for each product
 $archives = @{}

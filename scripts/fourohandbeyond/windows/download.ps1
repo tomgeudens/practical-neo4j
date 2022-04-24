@@ -11,7 +11,7 @@ Write-Host "Downloading - there is no progress indicator! Please be patient!" -F
 # Files
 $jreZip = "zulu$($zuluVersion)-ca-jre$($jreVersion)-win_x64.zip"
 $neo4jZip = "neo4j-enterprise-$($neo4jVersion)-windows.zip"
-$gdsZip = "neo4j-graph-data-science-$($gdsVersion)-standalone.zip"
+$gdsZip = "neo4j-graph-data-science-$($gdsVersion).zip"
 $apocJar = "apoc-$($apocVersion)-all.jar"
 $apocLicense = "license-dependency.json"
 
@@ -22,7 +22,7 @@ $dependencies = "couchbase","email","mongodb","nlp","xls"
 $urls = @{}
 $urls.Add('neo4j',"https://neo4j.com/artifact.php?name=$($neo4jZip)")
 $urls.Add('jre',"https://cdn.azul.com/zulu/bin/$($jreZip)")
-$urls.Add('gds',"https://s3-eu-west-1.amazonaws.com/com.neo4j.graphalgorithms.dist/graph-data-science/$($gdsZip)")
+$urls.Add('gds',"https://graphdatascience.ninja/$($gdsZip)")
 $urls.Add('apoc',"https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/$($apocJar)")
 Foreach ($dependency in $dependencies) {
   $urls.Add("apoc$($dependency)","https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/$($apocVersion)/apoc-$($dependency)-dependencies-$($apocVersion).jar")
