@@ -21,7 +21,7 @@ $gdsJar = "neo4j-graph-data-science-$($gdsVersion).jar"
 # Plugins
 $plugins = @{}
 $plugins.Add('gds', (Get-Location).Path + "\install\$($gdsJar)")
-$plugins.Add('apoc-core', (Get-Location).Path + "\labs\apoc*core.jar")
+$plugins.Add('apoc-core', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\labs\apoc*core.jar")
 
 # Target location for each plugin
 $locations = @{}
