@@ -17,32 +17,19 @@ Write-Host "Moving the plugins..."
 
 # Files
 $gdsJar = "neo4j-graph-data-science-$($gdsVersion).jar"
-$apocJar = "apoc-$($apocVersion)-all.jar"
-$apocLicense = "license-dependency.json"
-
-# APOC Dependency list
-$dependencies = "couchbase","email","mongodb","nlp","xls"
 
 # Plugins
 $plugins = @{}
 $plugins.Add('gds', (Get-Location).Path + "\install\$($gdsJar)")
-$plugins.Add('apoc', (Get-Location).Path + "\install\$($apocJar)")
-Foreach ($dependency in $dependencies) {
-  $plugins.Add("apoc$($dependency)", (Get-Location).Path + "\install\apoc-$($dependency)-dependencies-$($apocVersion).jar")
-}
-$plugins.Add('apoclicense', (Get-Location).Path + "\install\$($apocLicense)")
+$plugins.Add('apoc-core', (Get-Location).Path + "\labs\apoc*core.jar")
 
 # Target location for each plugin
 $locations = @{}
 $locations.Add('gds', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
-$locations.Add('apoc', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
-Foreach ($dependency in $dependencies) {
-  $locations.Add("apoc$($dependency)", (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
-}
-$locations.Add('apoclicense', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
+$locations.Add('apoc-core', (Get-Location).Path + "\neo4j-enterprise-$($neo4jVersion)\plugins")
 
 # Catalog of products
-$catalog = "gds","apoc","apoccouchbase","apocemail","apocmongodb","apocnlp","apocxls"
+$catalog = "gds","apoc-core"
 
 # Actual move
 Foreach ($item in $catalog) {
