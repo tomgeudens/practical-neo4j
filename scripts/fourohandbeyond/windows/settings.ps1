@@ -17,6 +17,8 @@ $apocFileLocation = Join-Path $neo4jLocation "conf\apoc.conf"
 #Add all the config you want here, newlines are added later.
 $configLines = (
     "metrics.enabled=true",
+    "metrics.namespaces.enabled=true",
+    "metrics.filter=*",     
     "metrics.csv.enabled=false",
     "metrics.prometheus.enabled=false",
     "metrics.graphite.enabled=false",
