@@ -10,3 +10,4 @@ if (Test-Path env:_JAVA_OPTIONS) {
 }
 $env:JAVA_HOME = $javaJRELocation
 $env:PATH = "$($javaJRELocation)\bin;" + $env:PATH
+$env:NEO4J_ACCEPT_LICENSE_AGREEMENT = "yes"
