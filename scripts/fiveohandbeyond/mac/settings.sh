@@ -39,6 +39,6 @@ echo "apoc.import.file.enabled=true" >> neo4j-enterprise-${neo4jVersion}/conf/ap
 echo "apoc.import.file.use_neo4j_config=true" >> neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
 
 # setting the initial password
-export JAVA_HOME="$(pwd)/jdk-${temurinHomeVersion}-jre"
+export JAVA_HOME="$(pwd)/jdk-${temurinHomeVersion}-jre/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
 neo4j-enterprise-${neo4jVersion}/bin/neo4j-admin dbms set-initial-password trinity
