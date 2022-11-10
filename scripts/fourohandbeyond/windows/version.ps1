@@ -1,8 +1,8 @@
 Write-Host "Setting the versions ..." -NoNewline;
 
-$neo4jVersion = "4.4.12"
-$gdsVersion = "2.2.2"
-$zuluVersion = "11.58.23"
-$jreVersion = "11.0.16.1"
+$neo4jVersion = "4.4.13"
+$gdsVersion = "2.2.3"
+$zuluVersion = "11.60.19"
+$jreVersion = "11.0.17"
 
 Write-Host " Done!" -ForegroundColor Green
