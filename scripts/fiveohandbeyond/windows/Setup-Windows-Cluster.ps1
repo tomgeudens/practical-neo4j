@@ -30,6 +30,7 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         "cluster-copy.ps1",
         "Start-Windows-Cluster.ps1",
         "functions.ps1",
+        "set-environment-vars.ps1",
         "shared-vars.ps1"
         );
   
