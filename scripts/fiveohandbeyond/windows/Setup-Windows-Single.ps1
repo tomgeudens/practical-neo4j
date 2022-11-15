@@ -26,17 +26,22 @@ if($Stage -eq "" -or $Stage -eq "scripts"){
         "environment.ps1",
         "move.ps1",
         "functions.ps1",
-        "set-environment-vars.ps1"
+        "set-environment-vars.ps1",
+        "shared-vars.ps1"
         );
   
     foreach($script in $scriptNames) {
         Write-Host "`t$script ... " -NoNewline
-        try{        
+        try{
+            $global:ProgressPreference = 'SilentlyContinue'
             Invoke-WebRequest -Uri $rootUri$script -OutFile ./scripts/$script
             Write-Host "Done!" -ForegroundColor Green
         }
         catch{
             Write-Host "Failed!" -ForegroundColor Red
+        }
+        finally{
+            $global:ProgressPreference = 'Continue'
         }
     }
     

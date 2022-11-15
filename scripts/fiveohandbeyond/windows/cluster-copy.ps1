@@ -100,7 +100,7 @@ $configLines = (
     "server.https.listen_address=127.0.0.1:$https",
     "server.https.advertised_address=127.0.0.1:$https",
     "",
-    "dbms.backup.listen_address=127.0.0.1:$backup"
+    "server.backup.listen_address=127.0.0.1:$backup"
 )
 
 Write-Host "Adding config to " $configFileLocation
