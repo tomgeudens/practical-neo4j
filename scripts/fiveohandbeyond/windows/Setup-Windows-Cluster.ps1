@@ -15,7 +15,7 @@ Write-Host "`n";
 if($Stage -eq "" -or $Stage -eq "scripts"){
     mkdir scripts -Force > $null
     Write-Host "Downloading Scripts ... "     
-    $rootUri = "https://raw.githubusercontent.com/tomgeudens/practical-neo4j/master/scripts/fourohandbeyond/windows/"
+    $rootUri = "https://raw.githubusercontent.com/tomgeudens/practical-neo4j/master/scripts/fiveohandbeyond/windows/"
 
     #Scripts we want in the 'scripts' folder
     $scriptNames = (
