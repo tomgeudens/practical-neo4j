@@ -6,6 +6,31 @@ if($null -eq $neo4jVersion){
 # Constants
 $neo4jLocation = Join-Path (Get-Location).Path "neo4j-enterprise-$($neo4jVersion)"
 
+function Test-Parameters([hashtable] $argsToCheck){
+    <#
+    .SYNOPSIS 
+        Checks whether or not parameters given are empty strings.
+    
+    .PARAMETER argsToCheck
+        A hashtable made up of the Parameter name, and the supplied Parameter value
+
+    .INPUTS
+        Hashtable
+    
+    .OUTPUTS
+        Boolean
+#>
+$returnValue = $True
+foreach($key in $argsToCheck.keys){
+    if($argsToCheck[$key] -eq ""){
+        Write-Host "Parameter '$($key)' has not been set" -ForegroundColor Red
+        $returnValue = $False;
+    }
+}
+return $returnValue
+}
+
+
 function DownloadFileUsingGetFileInfo {
     <#
         .SYNOPSIS 
