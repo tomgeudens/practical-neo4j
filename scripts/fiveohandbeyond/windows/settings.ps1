@@ -1,4 +1,4 @@
-param($password="trinity")
+param($password="morpheus")
 
 # Opening statement
 Write-Host "Changing Settings..."
