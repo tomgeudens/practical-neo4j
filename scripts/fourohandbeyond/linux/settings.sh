@@ -28,4 +28,4 @@ echo "apoc.import.file.use_neo4j_config=true" >> neo4j-enterprise-${neo4jVersion
 # setting the initial password
 export JAVA_HOME="$(pwd)/zulu${zuluVersion}-ca-jre${jreVersion}-linux_x64"
 export PATH="$JAVA_HOME/bin:$PATH"
-neo4j-enterprise-${neo4jVersion}/bin/neo4j-admin set-initial-password trinity
+neo4j-enterprise-${neo4jVersion}/bin/neo4j-admin set-initial-password morpheus
