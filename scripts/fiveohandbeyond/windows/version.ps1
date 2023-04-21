@@ -1,10 +1,10 @@
 Write-Host "Setting the versions ..." -NoNewline;
 
-$neo4jVersion = "5.6.0"
-$gdsVersion = "2.3.2"
+$neo4jVersion = "5.7.0"
+$gdsVersion = "2.3.3"
 $javaVersion="17"
-$temurinURLVersion="17.0.6%2B10"
-$temurinFileVersion="17.0.6_10"
-$temurinHomeVersion="17.0.6+10"
+$temurinURLVersion="17.0.7%2B7"
+$temurinFileVersion="17.0.7_7"
+$temurinHomeVersion="17.0.7+7"
 
 Write-Host " Done!" -ForegroundColor Green
