@@ -1,4 +1,4 @@
-export neo4jVersion="4.4.25"
-export gdsVersion="2.4.5"
-export zuluVersion="11.66.15"
-export jreVersion="11.0.20"
+export neo4jVersion="4.4.27"
+export gdsVersion="2.5.3"
+export zuluVersion="11.68.17"
+export jreVersion="11.0.21"
