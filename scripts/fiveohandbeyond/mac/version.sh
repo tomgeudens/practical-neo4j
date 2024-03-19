@@ -1,5 +1,5 @@
 export neo4jVersion="5.18.1"
-export gdsVersion="2.6.1"
+export gdsVersion="2.6.2"
 export javaVersion="17"
 export temurinURLVersion="17.0.10%2B7"
 export temurinFileVersion="17.0.10_7"
