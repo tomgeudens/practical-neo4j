@@ -15,6 +15,8 @@ $configFileLocation = Join-Path $neo4jLocation "conf\neo4j.conf"
 $apocFileLocation = Join-Path $neo4jLocation "conf\apoc.conf"
 
 #Add all the config you want here, newlines are added later.
+#db.tx_log.rotation.retention_policy=1G size
+#removed as there is now a reasonable default for it
 $configLines = (
     "# Custom - Generic",
     "server.config.strict_validation.enabled=false",
@@ -38,9 +40,7 @@ $configLines = (
     "dbms.memory.transaction.total.max=2000m",
     "db.memory.transaction.max=1g",
     "# Custom - Network Settings",
-    "server.default_listen_address=0.0.0.0",
-    "# Custom - Transaction Log",
-    "db.tx_log.rotation.retention_policy=1G size"
+    "server.default_listen_address=0.0.0.0"
 )
 $apocLines = (
     "apoc.export.file.enabled=true",
