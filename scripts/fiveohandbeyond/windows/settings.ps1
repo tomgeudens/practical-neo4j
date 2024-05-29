@@ -40,7 +40,9 @@ $configLines = (
     "dbms.memory.transaction.total.max=2000m",
     "db.memory.transaction.max=1g",
     "# Custom - Network Settings",
-    "server.default_listen_address=0.0.0.0"
+    "server.default_listen_address=0.0.0.0",
+    "# no usage data collection please",
+    "dbms.usage_report.enabled=false"
 )
 $apocLines = (
     "apoc.export.file.enabled=true",

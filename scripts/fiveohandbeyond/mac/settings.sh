@@ -34,6 +34,9 @@ echo "server.default_listen_address=0.0.0.0" >> neo4j-enterprise-${neo4jVersion}
 # echo "# Custom - Transaction Log" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
 # echo "db.tx_log.rotation.retention_policy=1G size" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
 
+echo "# no usage data collection please" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
+echo "dbms.usage_report.enabled=false" >> neo4j-enterprise-${neo4jVersion}/conf/neo4j.conf
+
 # create apoc.conf file
 echo "apoc.export.file.enabled=true" > neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
 echo "apoc.import.file.enabled=true" >> neo4j-enterprise-${neo4jVersion}/conf/apoc.conf
