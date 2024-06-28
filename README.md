@@ -1,1 +1,1 @@
-check the project's wiki for more information
+neo4j scripts and whatnots
