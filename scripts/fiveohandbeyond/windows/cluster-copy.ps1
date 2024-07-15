@@ -66,6 +66,8 @@ $initialMembersCount = $SizeOfCluster
 if($initialMembersCount -gt 3) {
     $initialMembersCount = 3
 }
+$initialSecondariesCount = 2
+
 for ($i = 0; $i -lt $initialMembersCount; $i++) {
     $modifier = ($i + 1)
     $port = 5000 + $modifier
@@ -89,6 +91,7 @@ $configLines = (
     "server.cluster.advertised_address=127.0.0.1:$transaction",
     "server.cluster.raft.advertised_address=127.0.0.1:$raft",
     "server.routing.advertised_address=127.0.0.1:$routing",
+    "initial.dbms.default_secondaries_count:$initialSecondariesCount",
     "",
     "server.bolt.enabled=true",
     "server.bolt.advertised_address=127.0.0.1:$bolt",
