@@ -45,7 +45,7 @@ $configLines = (
     "# Custom - Network Settings",
     "server.default_listen_address=0.0.0.0",
     "# no usage data collection please",
-    "dbms.usage_report.enabled=false"
+    "dbms.usage_report.enabled=false",
     "",
     "# Custom - Transaction Log",
     "db.tx_log.rotation.retention_policy=1G size"
