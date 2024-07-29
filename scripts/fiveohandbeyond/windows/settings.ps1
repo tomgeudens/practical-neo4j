@@ -48,7 +48,7 @@ $configLines = (
     "dbms.usage_report.enabled=false",
     "",
     "# Custom - Transaction Log",
-    "db.tx_log.rotation.retention_policy=1G size"
+    "# db.tx_log.rotation.retention_policy=1G size"
 )
 $apocLines = (
     "apoc.export.file.enabled=true",
