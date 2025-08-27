@@ -1,4 +1,4 @@
-export neo4jVersion="2025.06.0"
+export neo4jVersion="2025.07.1"
 export neo4jEdition="enterprise"
 export gdsVersion="2.20.0"
 export javaVersion="21"
