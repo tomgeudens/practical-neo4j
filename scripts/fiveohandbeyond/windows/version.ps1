@@ -1,6 +1,6 @@
 Write-Host "Setting the versions ..." -NoNewline;
 
-$neo4jVersion = "5.26.13"
+$neo4jVersion = "5.26.14"
 $gdsVersion = "2.13.7"
 $javaVersion="17"
 $temurinURLVersion="17.0.16%2B8"
