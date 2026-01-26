@@ -17,7 +17,7 @@
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit-jupiter.version>5.6.2</junit-jupiter.version> <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-        <assertj.version>3.16.1</assertj.version> <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <assertj.version>3.27.7</assertj.version> <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
     </properties>
 
     <dependencies>
