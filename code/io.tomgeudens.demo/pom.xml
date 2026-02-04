@@ -10,7 +10,7 @@
 
     <properties>
         <!-- versions verified as being stable on 2020/08/17 -->
-        <neo4j.version>4.1.1</neo4j.version>
+        <neo4j.version>5.26.21</neo4j.version>
         <neo4j.driver.version>4.1.1</neo4j.driver.version> <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
