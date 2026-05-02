@@ -29,6 +29,7 @@ echo "db.memory.transaction.max=1g" >> neo4j-${neo4jEdition}-${neo4jVersion}/con
 
 echo "# Custom - Network Settings" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 echo "server.default_listen_address=0.0.0.0" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
+echo "server.http.x_forward.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 
 # there is now a reasonable default for this (after only 5 years of waiting for it ;-)
 # echo "# Custom - Transaction Log" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
@@ -36,6 +37,9 @@ echo "server.default_listen_address=0.0.0.0" >> neo4j-${neo4jEdition}-${neo4jVer
 
 echo "# no usage data collection please" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 echo "dbms.usage_report.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
+
+echo "# no fleet manager please" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
+echo "dbms.fleet_manager.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 
 # create apoc.conf file
 echo "apoc.export.file.enabled=true" > neo4j-${neo4jEdition}-${neo4jVersion}/conf/apoc.conf
