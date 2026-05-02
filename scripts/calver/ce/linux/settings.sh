@@ -26,6 +26,9 @@ echo "server.default_listen_address=0.0.0.0" >> neo4j-${neo4jEdition}-${neo4jVer
 echo "# no usage data collection please" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 echo "dbms.usage_report.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 
+echo "# no fleet manager please" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
+echo "dbms.fleet_manager.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
+
 # create apoc.conf file
 echo "apoc.export.file.enabled=true" > neo4j-${neo4jEdition}-${neo4jVersion}/conf/apoc.conf
 echo "apoc.import.file.enabled=true" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/apoc.conf
