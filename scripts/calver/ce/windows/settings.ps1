@@ -32,6 +32,7 @@ $configLines = (
     "",
     "# Custom - Network Settings",
     "server.default_listen_address=0.0.0.0",
+    "server.http.x_forward.enabled=false",    
     "# no usage data collection please",
     "dbms.usage_report.enabled=false",
     "# no fleet manager please",
