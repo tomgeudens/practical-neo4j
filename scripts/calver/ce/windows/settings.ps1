@@ -36,7 +36,8 @@ $configLines = (
     "# no usage data collection please",
     "dbms.usage_report.enabled=false",
     "# no fleet manager please",
-    "dbms.fleet_manager.enabled=false"
+    "dbms.fleet_manager.enabled=false",
+    "server.fleet_discovery.enabled=false"
 )
 $apocLines = (
     "apoc.export.file.enabled=true",

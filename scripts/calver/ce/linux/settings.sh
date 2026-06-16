@@ -29,6 +29,7 @@ echo "dbms.usage_report.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/
 
 echo "# no fleet manager please" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 echo "dbms.fleet_manager.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
+echo "server.fleet_discovery.enabled=false" >> neo4j-${neo4jEdition}-${neo4jVersion}/conf/neo4j.conf
 
 # create apoc.conf file
 echo "apoc.export.file.enabled=true" > neo4j-${neo4jEdition}-${neo4jVersion}/conf/apoc.conf
